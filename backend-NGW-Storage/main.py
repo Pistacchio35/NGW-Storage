@@ -88,6 +88,7 @@ def db_extractor_endpoint(id_corsista: str = Form(...),
                           asc: str = Form(...),
                           desc: str = Form(...)):
     
+    # sono inseriti in un dizionario
     parametri = {
         "id_corsista": id_corsista.strip("'").strip('"'),
         "id_classe": id_classe.strip("'").strip('"'),
@@ -121,7 +122,7 @@ def db_extractor_endpoint(id_corsista: str = Form(...),
     parametri_filtrati = {chiave: valore for chiave, valore in parametri.items() if valore}
 
     try:
-        # prova select inserendo dei parametri
+        # alla funzione select vengono passati solo i parametri che hanno un valore
         result = select(**parametri_filtrati)
 
         if not result:

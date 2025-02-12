@@ -58,37 +58,34 @@ def extractor_endpoint():
     extractor(uploaded_file, files)
 
 
-# Da aggiungere formData per i parametri
+# i parametri verranno ricevuti con un formData
 @app.get("/estrattore-database")
-def db_extractor_endpoint():
-
-    # Parametri che possono essere passati nella funzione ricevuti tramite formData
-    # id_corsista=None,
-    # id_classe=None,
-    # id_formatore=None,
-    # id_riunione=None,
-    # id_modulo=None,
-    # nome=None,
-    # username=None,
-    # email_accesso=None,
-    # regione=None,
-    # scuola_provenienza=None,
-    # anno_scolastico=None,
-    # totale_ore_presenza=None,
-    # descrizione=None,
-    # durata_stimata=None,
-    # gradimento_totale=None,
-    # gradimento_lezione=None,
-    # email=None,
-    # data_riunione=None,
-    # durata_riunione=None,
-    # fromDaCercare=None,
-    # campoCondizione=None,
-    # valoreCondizione=None,
-    # group_by=None,
-    # campoPerOrdinamento=None,
-    # asc=None,
-    # desc=None,
+def db_extractor_endpoint(id_corsista: str = Form(...), 
+                          id_classe: str = Form(...), 
+                          id_formatore: str = Form(...), 
+                          id_riunione: str = Form(...), 
+                          id_modulo: str = Form(...), 
+                          nome: str = Form(...), 
+                          username: str = Form(...), 
+                          email_accesso: str = Form(...), 
+                          regione: str = Form(...), 
+                          scuola_provenienza: str = Form(...), 
+                          anno_scolastico: str = Form(...), 
+                          totale_ore_presenza: str = Form(...), 
+                          descrizione: str = Form(...), 
+                          durata_stimata: str = Form(...), 
+                          gradimento_totale: str = Form(...), 
+                          gradimento_lezione: str = Form(...), 
+                          email: str = Form(...),
+                          data_riunione: str = Form(...), 
+                          durata_riunione: str = Form(...),
+                          fromDaCercare: str = Form(...),
+                          campoCondizione: str = Form(...),
+                          valoreCondizione: str = Form(...),
+                          group_by: str = Form(...),
+                          campoPerOrdinamento: str = Form(...),
+                          asc: str = Form(...),
+                          desc: str = Form(...)):
 
     try:
         # prova select inserendo dei parametri

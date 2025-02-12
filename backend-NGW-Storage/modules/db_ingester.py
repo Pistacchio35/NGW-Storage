@@ -54,6 +54,11 @@ def insert(
             insert += "anno_scolastico"
         if totale_ore_presenza:
             insert += "totale_ore_presenza "
+        if scuola_provenienza:
+            insert += "scuola_provenienza"
+        if anno_scolastico:
+            insert += "anno_scolastico"
+        if totale_ore_presenza:
+            insert += "totale_ore_presenza"
         if id_classe: 
-        
-        #  scuola_provenienza or anno_scolastico or totale_ore_presenza or id_classe:
+            insert += "id_classe"

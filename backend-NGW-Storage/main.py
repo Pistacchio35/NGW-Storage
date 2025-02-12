@@ -81,19 +81,48 @@ def db_extractor_endpoint(id_corsista: str = Form(...),
                           durata_riunione: str = Form(...),
                           fromDaCercare: str = Form(...),
                           campoCondizione: str = Form(...),
+                          simboloCondizione: str = Form(...),
                           valoreCondizione: str = Form(...),
                           group_by: str = Form(...),
                           campoPerOrdinamento: str = Form(...),
                           asc: str = Form(...),
                           desc: str = Form(...)):
+    
+    parametri = {
+        "id_corsista": id_corsista.strip("'").strip('"'),
+        "id_classe": id_classe.strip("'").strip('"'),
+        "id_formatore": id_formatore.strip("'").strip('"'),
+        "id_riunione": id_riunione.strip("'").strip('"'),
+        "id_modulo": id_modulo.strip("'").strip('"'),
+        "nome": nome.strip("'").strip('"'),
+        "username": username.strip("'").strip('"'),
+        "email_accesso": email_accesso.strip("'").strip('"'),
+        "regione": regione.strip("'").strip('"'),
+        "scuola_provenienza": scuola_provenienza.strip("'").strip('"'),
+        "anno_scolastico": anno_scolastico.strip("'").strip('"'),
+        "totale_ore_presenza": totale_ore_presenza.strip("'").strip('"'),
+        "descrizione": descrizione.strip("'").strip('"'),
+        "durata_stimata": durata_stimata.strip("'").strip('"'),
+        "gradimento_totale": gradimento_totale.strip("'").strip('"'),
+        "gradimento_lezione": gradimento_lezione.strip("'").strip('"'),
+        "email": email.strip("'").strip('"'),
+        "data_riunione": data_riunione.strip("'").strip('"'),
+        "durata_riunione": durata_riunione.strip("'").strip('"'),
+        "fromDaCercare": fromDaCercare.strip("'").strip('"'),
+        "campoCondizione": campoCondizione.strip("'").strip('"'),
+        "simboloCondizione": simboloCondizione.strip("'").strip('"'),
+        "valoreCondizione": valoreCondizione.strip("'").strip('"'),
+        "group_by": group_by.strip("'").strip('"'),
+        "campoPerOrdinamento": campoPerOrdinamento.strip("'").strip('"'),
+        "asc": asc.strip("'").strip('"'),
+        "desc": desc.strip("'").strip('"')}
+    
+    # In parametri_filtrati vengono inseriti solo i parametri che hanno un valore
+    parametri_filtrati = {chiave: valore for chiave, valore in parametri.items() if valore}
 
     try:
         # prova select inserendo dei parametri
-        result = select(
-            fromDaCercare="corsisti",
-            campoPerOrdinamento="nome",
-            asc="si",
-        )
+        result = select(**parametri_filtrati)
 
         if not result:
             return {"status": "success", "data": "Nessun dato trovato"}
